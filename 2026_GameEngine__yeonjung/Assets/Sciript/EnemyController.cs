@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyControlle : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
     public float moveSpeed = 3f;
 
