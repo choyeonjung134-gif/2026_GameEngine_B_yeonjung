@@ -15,10 +15,13 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private float moveInput;
 
+    float score;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         pAni = GetComponent<Animator>();
+        score = 0;
     }
 
     private void Update()
@@ -49,6 +52,14 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Respawn"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        }
+
+        if(collision.CompareTag("Finish"))
+        {
+            HighScore.TrySet(SceneManager.GetActiveScene().buildIndex, (int)score);
+
+            colision.GetCoponent<LevelObject>().MoveToNextLevel();
         }
       
     }
@@ -63,6 +74,10 @@ public class PlayerController : MonoBehaviour
         if(collision.CompareTag("Enemy"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        if (collision.CompareTag("Item"))
+        {
+
         }
     }
 }
